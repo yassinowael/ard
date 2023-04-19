@@ -67,7 +67,7 @@ void loop()
      byone("Power Off", 3);
     lcd.noDisplay();
   }
-  //if mode 1, call fac number, if mode 3 call last number
+  //if mode 1, call favorite number, if mode 3 call last number
   if (message[0] == "1"||message[0]=="3")
     Dial(message[1]);
   //if mode 2 call number inputted by user
@@ -106,3 +106,4 @@ void loop()
   if (message[0] == "6")
     returnhome();
 }
+    
