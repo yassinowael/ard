@@ -3,7 +3,8 @@
 
 // Set the LCD address to 0x27 for a 16 chars and 2 line display
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-
+#include <SoftwareSerial.h>
+SoftwareSerial ss(11,12);
 void setup()
 {
   // initialize the LCD
@@ -45,7 +46,7 @@ void returnhome(void)
       delay(250);
     }
   }
- //function that calls number x
+ //function that rings on number x
  void Dial (String x)
   {
     lcd.blink();
@@ -57,10 +58,12 @@ void returnhome(void)
     byone("Dialing...",3);
     lcd.print("  ");
   }
-String message[2] = {"2","01008798070"};
+String message[2] = {"1","01008798070"};
 String data = "yes";
+
 void loop()
 {
+  if(ss.available()){
   //if mode 0, power off
   if (message[0] == "0")
   {
@@ -102,8 +105,7 @@ void loop()
     lcd.setCursor(5, 1);
     lcd.print("         ");
   }
-  //if mode 6 go to home screen
-  if (message[0] == "6")
+  }
+  else
     returnhome();
 }
-    
